@@ -26628,9 +26628,6 @@ async function run() {
       return xlog;
     });
 
-    core.debug(`Endpoint ${endpoint}`)
-    core.debug(`Auth: ${lokiBasicAuth()}`)
-
     const options = (job) => {
       return {
 
@@ -26646,9 +26643,8 @@ async function run() {
               workflowId,
               type: "github",
             },
-            json: true,
             basicAuth: lokiBasicAuth(),
-            format: format.json(),
+            format: lokiFmt,
             replaceTimestamp: true,
             onConnectionError: (err) => core.error(err)
           }),
