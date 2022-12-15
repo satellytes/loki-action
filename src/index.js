@@ -153,9 +153,6 @@ export async function run() {
 
     const options = (job) => {
       return {
-
-        level: 'debug',
-
         transports: [
           new LokiTransport({
             host: endpoint,
