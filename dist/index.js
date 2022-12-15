@@ -26646,8 +26646,7 @@ async function run() {
             batching: false,
             basicAuth: lokiBasicAuth(),
             format: lokiFmt,
-            replaceTimestamp: true,
-            onConnectionError: (err) => core.error(err)
+            onConnectionError: onConnectionError
           }),
           new transports.Console({}),
         ],
