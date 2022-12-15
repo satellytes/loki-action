@@ -165,7 +165,7 @@ export async function run() {
               host: endpoint,
               gracefulShutdown: true,
               onConnectionError: onConnectionError,
-              lokiBasicAuth: lokiBasicAuth(),
+              basicAuth: lokiBasicAuth(),
             }),
         ],
       };
