@@ -153,23 +153,25 @@ export async function run() {
       return xlog;
     });
 
+    core.debug(`Endpoint ${endpoint}`)
+    core.debug(`Auth: ${lokiBasicAuth()}`)
+
     const options = (job) => {
       return {
+
+        level: 'debug',
+
         transports: [
           new LokiTransport({
-            labels: {
-              job: job?.name,
-              jobId: job?.id,
-              repo,
-              workflowId,
-              type: "github",
-            },
-            batching: false,
-            host: endpoint || addresses[0],
-            gracefulShutdown: true,
-            onConnectionError: onConnectionError,
-            lokiBasicAuth: lokiBasicAuth(),
+            host: endpoint,
+            labels: { app: "wompi" },
+            json: true,
+            basicAuth: lokiBasicAuth(),
+            format: winston.format.json(),
+            replaceTimestamp: true,
+            onConnectionError: (err) => core.error(err)
           }),
+          new winston.transports.Console({}),
         ],
       };
     };
