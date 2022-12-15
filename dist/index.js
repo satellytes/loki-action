@@ -26646,7 +26646,6 @@ async function run() {
             format: lokiFmt,
             onConnectionError: onConnectionError
           }),
-          new transports.Console({}),
         ],
       };
     };
