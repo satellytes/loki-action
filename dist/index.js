@@ -26541,6 +26541,7 @@ async function fetchJobs(httpClient, repo, runId, allowList) {
 
 async function fetchLogs(httpClient, repo, job) {
   const url = `${githubAPIUrl}/repos/${repo}/actions/jobs/${job.id}/logs`;
+  core.debug(url)
   const res = await httpClient.get(url);
 
   if (res.message.statusCode === undefined || res.message.statusCode >= 400) {
@@ -26548,6 +26549,7 @@ async function fetchLogs(httpClient, repo, job) {
   }
 
   const body = await res.readBody();
+  core.debug(body)
   return body.split("\n");
 }
 
@@ -26638,7 +26640,6 @@ async function run() {
               type: "github",
             },
             batching: false,
-            format: lokiFmt,
             host: endpoint || addresses[0],
             gracefulShutdown: true,
             onConnectionError: onConnectionError,
