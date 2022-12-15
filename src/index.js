@@ -164,7 +164,13 @@ export async function run() {
         transports: [
           new LokiTransport({
             host: endpoint,
-            labels: { app: "wompi" },
+            labels: {
+              job: job?.name,
+              jobId: job?.id,
+              repo,
+              workflowId,
+              type: "github",
+            },
             json: true,
             basicAuth: lokiBasicAuth(),
             format: format.json(),
