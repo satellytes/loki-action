@@ -183,6 +183,7 @@ export async function run() {
       for (const l of lines) {
         try {
           if (l && l?.length > 0) {
+            core.info(l)
             logs.info(l);
           }
         } catch (e) {
