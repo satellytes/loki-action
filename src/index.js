@@ -162,7 +162,7 @@ export async function run() {
               },
               batching: false,
               format: lokiFmt,
-              host: endpoint || addresses[0],
+              host: endpoint,
               gracefulShutdown: true,
               onConnectionError: onConnectionError,
               lokiBasicAuth: lokiBasicAuth(),
