@@ -26476,7 +26476,7 @@ __nccwpck_require__.r(__webpack_exports__);
 const core = __nccwpck_require__(2186);
 const process = __nccwpck_require__(1765);
 const HttpClient = __nccwpck_require__(9925)/* .HttpClient */ .eN;
-const { createLogger, format } = __nccwpck_require__(4158);
+const { createLogger, format, transports } = __nccwpck_require__(4158);
 const LokiTransport = __nccwpck_require__(4490);
 const githubAPIUrl = "https://api.github.com";
 const { printf } = format;
@@ -26642,11 +26642,11 @@ async function run() {
             labels: { app: "wompi" },
             json: true,
             basicAuth: lokiBasicAuth(),
-            format: winston.format.json(),
+            format: format.json(),
             replaceTimestamp: true,
             onConnectionError: (err) => core.error(err)
           }),
-          new winston.transports.Console({}),
+          new transports.Console({}),
         ],
       };
     };

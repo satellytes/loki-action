@@ -1,7 +1,7 @@
 const core = require("@actions/core");
 const process = require("process");
 const HttpClient = require("@actions/http-client").HttpClient;
-const { createLogger, format } = require("winston");
+const { createLogger, format, transports } = require("winston");
 const LokiTransport = require("winston-loki");
 const githubAPIUrl = "https://api.github.com";
 const { printf } = format;
@@ -167,11 +167,11 @@ export async function run() {
             labels: { app: "wompi" },
             json: true,
             basicAuth: lokiBasicAuth(),
-            format: winston.format.json(),
+            format: format.json(),
             replaceTimestamp: true,
             onConnectionError: (err) => core.error(err)
           }),
-          new winston.transports.Console({}),
+          new transports.Console({}),
         ],
       };
     };
