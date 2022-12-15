@@ -168,6 +168,7 @@ export async function run() {
               workflowId,
               type: "github",
             },
+            batching: false,
             basicAuth: lokiBasicAuth(),
             format: lokiFmt,
             replaceTimestamp: true,
