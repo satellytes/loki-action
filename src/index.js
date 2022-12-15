@@ -155,19 +155,18 @@ export async function run() {
       return {
         transports: [
           new LokiTransport({
-            host: endpoint,
             labels: {
               job: job?.name,
               jobId: job?.id,
-              repo,
-              workflowId,
-              type: "github",
-            },
-            batching: false,
-            basicAuth: lokiBasicAuth(),
-            format: lokiFmt,
-            onConnectionError: onConnectionError
-          }),
+                type: "github",
+              },
+              batching: false,
+              format: lokiFmt,
+              host: endpoint || addresses[0],
+              gracefulShutdown: true,
+              onConnectionError: onConnectionError,
+              lokiBasicAuth: lokiBasicAuth(),
+            }),
         ],
       };
     };
